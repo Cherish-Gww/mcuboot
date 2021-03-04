@@ -290,7 +290,7 @@ bs_upload(char *buf, int len)
         goto out_invalid_data;
     }
 
-    rc = flash_area_open(flash_area_id_from_multi_image_slot(img_num, 0), &fap);
+    rc = flash_area_open(flash_area_id_from_multi_image_slot(img_num, 1), &fap);
     if (rc) {
         rc = MGMT_ERR_EINVAL;
         goto out;
