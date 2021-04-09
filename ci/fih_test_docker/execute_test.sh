@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2020 Arm Limited
+# Copyright (c) 2021 Arm Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,8 +26,6 @@ BUILD_TYPE=$2
 DAMAGE_TYPE=$3
 FIH_LEVEL=$4
 
-source ~/.bashrc
-
 if test -z "$FIH_LEVEL"; then
     # Use the default level
     CMAKE_FIH_LEVEL=""
@@ -47,6 +45,7 @@ cmake -B $TFM_BUILD_DIR \
     -DTFM_PSA_API=ON \
     -DMCUBOOT_PATH=$MCUBOOT_PATH \
     -DMCUBOOT_LOG_LEVEL=INFO \
+    -DTFM_TEST_REPO_VERSION=98adf32da35e93aceefa6cee199350ba27e3a5b8 \
     $CMAKE_FIH_LEVEL \
     .
 cd $TFM_BUILD_DIR

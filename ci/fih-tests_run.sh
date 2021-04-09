@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2020 Arm Limited
+# Copyright (c) 2021 Arm Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,14 @@
 
 set -e
 
+pushd .. &&\
+   git clone https://git.trustedfirmware.org/TF-M/trusted-firmware-m.git &&\
+   pushd trusted-firmware-m &&\
+   git checkout ed3980e7405599b39cbf19aef2d7dbbc8506f28a &&\
+   popd
+
 if test -z "$FIH_LEVEL"; then
-    docker run mcuboot/fih-test /bin/sh -c '/root/execute_test.sh $0 $1 $2' $SKIP_SIZE $BUILD_TYPE $DAMAGE_TYPE
+    docker run --rm -v $(pwd):/root/work/tfm:rw,z mcuboot/fih-test /bin/sh -c '/root/work/tfm/mcuboot/ci/fih_test_docker/execute_test.sh $0 $1 $2' $SKIP_SIZE $BUILD_TYPE $DAMAGE_TYPE
 else
-    docker run mcuboot/fih-test /bin/sh -c '/root/execute_test.sh $0 $1 $2 $3' $SKIP_SIZE $BUILD_TYPE $DAMAGE_TYPE $FIH_LEVEL
+    docker run --rm -v $(pwd):/root/work/tfm:rw,z mcuboot/fih-test /bin/sh -c '/root/work/tfm/mcuboot/ci/fih_test_docker/execute_test.sh $0 $1 $2 $3' $SKIP_SIZE $BUILD_TYPE $DAMAGE_TYPE $FIH_LEVEL
 fi
