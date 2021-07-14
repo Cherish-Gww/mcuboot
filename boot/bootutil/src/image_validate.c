@@ -43,6 +43,9 @@
 #ifdef MCUBOOT_ENC_IMAGES
 #include "bootutil/enc_key.h"
 #endif
+
+#if 0
+
 #if defined(MCUBOOT_SIGN_RSA)
 #include "mbedtls/rsa.h"
 #endif
@@ -53,6 +56,8 @@
     defined(MCUBOOT_SIGN_EC) || defined(MCUBOOT_SIGN_EC256)
 #include "mbedtls/asn1.h"
 #endif
+
+#endif 
 
 #include "bootutil_priv.h"
 
