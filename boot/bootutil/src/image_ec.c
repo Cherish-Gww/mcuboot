@@ -27,7 +27,7 @@
 
 #include "mcuboot_config/mcuboot_config.h"
 
-#if (defined(MCUBOOT_SIGN_EC) || defined(MCUBOOT_SIGN_EC256)) && (defined(MCUBOOT_USE_MBEDTLS))
+#if (defined(MCUBOOT_SIGN_EC) || defined(MCUBOOT_SIGN_EC256)) && (defined(MCUBOOT_USE_MBED_TLS))
 #include "bootutil/sign_key.h"
 
 #include "mbedtls/ecdsa.h"
