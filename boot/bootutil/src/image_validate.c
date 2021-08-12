@@ -44,7 +44,7 @@
 #include "bootutil/enc_key.h"
 #endif
 
-#if 0
+#if defined(MCUBOOT_USE_MBED_TLS)
 
 #if defined(MCUBOOT_SIGN_RSA)
 #include "mbedtls/rsa.h"
